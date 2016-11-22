@@ -1,7 +1,7 @@
 // Brennan Huber
 // MATH 4600
 
-// Should be done.
+// Actually not done.. gotta do order of accuracy.
 
 public class Problem3 {
 /*
