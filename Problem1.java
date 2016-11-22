@@ -50,7 +50,7 @@ public class Problem1 {
 		// printing solution
 		// formatted so it only has 5 decimal digits.
 		for(int i = 0; i < N; i++) {
-			System.out.println("x_" + (i + 1) + " = " + String.format("%.6g", x[i]));
+			System.out.println("x_" + (i + 1) + " = " + String.format("%1$.5f", x[i]));
 		}
 	}
 	
@@ -67,7 +67,7 @@ public class Problem1 {
 				}
 			}
 			
-			// row swapping OG matrix to pp matrix.
+			// row swapping OG matrix to partial pivoted matrix.
 			double temp_A[] = A[i];
 			A[i] = A[max];
 			A[max] = temp_A;
@@ -91,7 +91,7 @@ public class Problem1 {
 		
 		
 		// Backwards Substitution
-		// pretty sure this is right.. obviously gonna need to double check.
+		// pretty sure this is right.. obviously going to need to double check.
 		double[] x = new double[N];
 		
 		for(int i = N - 1; i >= 0; i--) {
