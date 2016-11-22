@@ -2,7 +2,6 @@
 // MATH 4600
 
 // Should be done.
-
 public class Problem3 {
 /*
  *	Write a problem to apply the formula

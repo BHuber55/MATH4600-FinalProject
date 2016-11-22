@@ -1,6 +1,8 @@
 // Brennan Huber
 // MATH 4600
 
+// uh yeah no idea where to begin.. gonna have to look at the notes for this one.
+
 public class Problem2 {
 	/*
 	 * 		Write a program to apply the modified newtons method to the equation f(x) = x^3 - 3x^2 + 4 = 0
