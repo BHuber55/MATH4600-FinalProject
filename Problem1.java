@@ -89,7 +89,6 @@ public class Problem1 {
 			}
 		}
 		
-		
 		// Backwards Substitution
 		// pretty sure this is right.. obviously going to need to double check.
 		double[] x = new double[N];
