@@ -21,7 +21,8 @@ public class Problem3 {
 	public static void main(String args[]) {
 		// setting up h
 		for(int i = 0; i < 5; i++) {
-			h[i] = 1/Math.pow(3, (i+1));
+			h[i] = Math.pow(3, (-(i+1)));
+			System.out.println("MAIN: H[i] is: " + h[i]);
 		}
 		
 		// so apply a formula to get 4th derivative equivalent
@@ -30,16 +31,30 @@ public class Problem3 {
 		// Printing out the solution
 		System.out.println("Solution: ");
 		for(int i = 0; i < N; i++) {
-			System.out.println(answer[i]);
+			System.out.println(String.format("%1$.8f", answer[i]));
 		}
 		
 		System.out.println();
 		double error[] = new double[N];
+		
 		// Printing out the absolute error
 		for(int i = 0; i < N; i++) {
 			error[i] = Math.abs(fourth - answer[i]);
-			System.out.println(error[i]);
+			System.out.println(String.format("%1$.8f", error[i]));
 		}
+		
+		System.out.println();
+		double accuracy[] = new double[N];
+		
+		// calculating order of accuracy.
+		for(int i = 0; i < N - 1; i++) {
+			accuracy[i] = error[i]/error[i + 1];
+			
+			// this part right here is just wrong.
+			
+			System.out.println(Math.round(accuracy[i]));
+		}
+		
 		
 		// =================================================
 		// BLAH BLAH BLAH verify correct order of accuracy.
@@ -50,12 +65,12 @@ public class Problem3 {
 		
 		// Applying the given formula to approximate the fourth derivative.
 		for(int i = 0; i < N; i++) {
+			System.out.println("APPROIX: H[i] is: " + h[i]);
 			solution[i] = (f(x - 2*h[i]) - 4*f(x - h[i]) + 6*f(x) - 4*f(x+h[i]) + f(x + 2*h[i]) ) / Math.pow(h[i], 4);
 		}
 		
 		return solution;
 	}
-
 	
 	private static double f(double z) {
 		return Math.cos(2*z);
