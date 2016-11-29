@@ -1,29 +1,22 @@
-// Brennan Huber
+// Brennan Huber and Katie Rouse
 // MATH 4600
 
-// Actually not done.. gotta do order of accuracy.
-
 public class Problem3 {
-/*
- *	Write a problem to apply the formula
- *		f^(4) (x) = a ton of shit.
- *
- * to approximate the fourth derivative of f(x) = cos(2x) at x=pi/8, with h= 1/3, 1/9, 1/27.... 1/3^5. Print out the error
- * 		in absolute value for each choice of h, and verify that your numerical results have the correct order of accuracy.
- */
 
 	private static double h[] = new double[5];
 	private static double x = Math.PI/8;
 	private static double fourth = 16*Math.cos(2*x);
 	private static int N = h.length;
 	
-	
 	public static void main(String args[]) {
 		// setting up h
+		System.out.println("H:");
 		for(int i = 0; i < 5; i++) {
 			h[i] = Math.pow(3, (-(i+1)));
-			System.out.println("MAIN: H[i] is: " + h[i]);
+			System.out.println(h[i]);
 		}
+		
+		System.out.println();
 		
 		// so apply a formula to get 4th derivative equivalent
 		double answer[] = approximation(h);
@@ -38,26 +31,21 @@ public class Problem3 {
 		double error[] = new double[N];
 		
 		// Printing out the absolute error
+		System.out.println("Error: ");
 		for(int i = 0; i < N; i++) {
 			error[i] = Math.abs(fourth - answer[i]);
 			System.out.println(String.format("%1$.8f", error[i]));
 		}
 		
 		System.out.println();
-		double accuracy[] = new double[N];
+		double accuracy;
 		
-		// calculating order of accuracy.
-		for(int i = 0; i < N - 1; i++) {
-			accuracy[i] = error[i]/error[i + 1];
-			
-			// this part right here is just wrong.
-			
-			System.out.println(Math.round(accuracy[i]));
-		}
+		// calculating and displaying order of accuracy.
+		accuracy = error[4]/error[3];
+		double delta_h = h[4]/h[3];
 		
-		
-		// =================================================
-		// BLAH BLAH BLAH verify correct order of accuracy.
+		double order = Math.log(accuracy)/Math.log(delta_h);
+		System.out.println("Order = " + Math.round(order));
 	}
 	
 	public static double[] approximation(double h[]) {
@@ -65,7 +53,6 @@ public class Problem3 {
 		
 		// Applying the given formula to approximate the fourth derivative.
 		for(int i = 0; i < N; i++) {
-			System.out.println("APPROIX: H[i] is: " + h[i]);
 			solution[i] = (f(x - 2*h[i]) - 4*f(x - h[i]) + 6*f(x) - 4*f(x+h[i]) + f(x + 2*h[i]) ) / Math.pow(h[i], 4);
 		}
 		
