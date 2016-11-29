@@ -1,19 +1,7 @@
-// Brennan Huber
+// Brennan Huber and Katie Rouse
 // MATH 4600
 
-// Should be done.
-
 public class Problem1 {
-/*
- * 
- * 		Write a program to apply Gaussian Elimination to solve the linear system
- * 
- * 			4x4 matrix. b = [26.6654, 37,7765, 54.4432, 37.7779]
- * 
- * 		You may or may not use the partial pivoting. Clearly present your results for the forward elimination and 
- * 		backwards substitution. Present your solution to 5 decimal digits.
- * 
- */
 
 	private static double A[][] = {	{4,3,-2,5},
 										{8,1, 0,6},
