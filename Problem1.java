@@ -2,20 +2,20 @@
 // MATH 4600
 
 public class Problem1 {
-
-	private static double A[][] = {	{4,3,-2,5},
-										{8,1, 0,6},
-										{2,4, 5,6},
-										{3,1, 7,2}	};
-	
-	private static double b[] = {	26.6654,
-									37.7765,
-									54.4432,
-									37.7779 };
-	
-	private static int N = b.length;
 	
 	public static void main(String args[]) {
+		double A[][] = {	{4,3,-2,5},
+							{8,1, 0,6},
+							{2,4, 5,6},
+							{3,1, 7,2}	};
+
+		double b[] = {	26.6654,
+						37.7765,
+						54.4432,
+						37.7779 };
+
+		int N = b.length;
+		
 		
 		// printing the original problem.
 		System.out.println("Original Problem: ");
@@ -44,6 +44,9 @@ public class Problem1 {
 	
 	
 	public static double[] solve(double[][] A, double[] b) {
+		
+		int N = b.length;
+		
 		// Forward Elimination
 		for(int i = 0; i < N; i++) {
 			int max = i;
@@ -77,20 +80,50 @@ public class Problem1 {
 			}
 		}
 		
-		// Backwards Substitution
-		// pretty sure this is right.. obviously going to need to double check.
-		double[] x = new double[N];
+		System.out.println();
+		System.out.println("Forward Elimination: ");
 		
-		for(int i = N - 1; i >= 0; i--) {
-			double sum = 0.0;
+		for(int i = 0; i < N; i++) {
 			
-			for(int j = i + 1; j < N; j++) {
-				sum += A[i][j]*x[j];
+			for(int j = 0; j < N; j++) {
+				System.out.print(A[i][j] + "   ");
 			}
 			
-			x[i] = (b[i] - sum)/A[i][i];
+			System.out.println( "x_" + (i + 1) + " =   " + b[i]);
 		}
 		
-		return x;
+		// Backwards Substitution
+		double mult;
+		
+		for(int i = N - 1; i >= 0; i--) {
+			mult = 0;
+			// fixing diagonals
+			mult = A[i][i];
+			A[i][i] = A[i][i]/mult;
+			b[i] = b[i]/mult;
+			
+			for(int j = i + 1; j < N; j++) {
+				A[i][j] = A[i][j]/mult;
+			}
+			
+			for(int k = i - 1; k >= 0; k--) {
+				b[k] = b[k] - A[k][i]*b[i];
+				A[k][i] = 0;
+			}
+		}
+		
+		System.out.println();
+		System.out.println("Backwards Substitution: ");
+		
+		for(int i = 0; i < N; i++) {
+			
+			for(int j = 0; j < N; j++) {
+				System.out.print(A[i][j] + "   ");
+			}
+			
+			System.out.println( "x_" + (i + 1) + " =   " + b[i]);
+		}
+		
+		return b;
 	}
 }
