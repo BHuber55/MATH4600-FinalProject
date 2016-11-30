@@ -13,6 +13,9 @@ public class Problem2 {
 		x_m1[0] = 3.0;
 		x_m2[0] = 3.0;
 		
+		int m1 = 1;
+		int m2 = 2;
+		
 		double error = Math.pow(10, -12);
 		double backwards_error1[] = new double[N];
 		double backwards_error2[] = new double[N];
@@ -25,7 +28,7 @@ public class Problem2 {
 		for(int i = 0; i < N - 1; i++) {
 			
 			// calculating our approximation, with m=1
-			x_m1[i + 1] = x_m1[i] - (f(x_m1[i])/fPrime(x_m1[i]));
+			x_m1[i + 1] = x_m1[i] - m1*(f(x_m1[i])/fPrime(x_m1[i]));
 			
 			// calculating backwards error.
 			backwards_error1[i + 1] = Math.abs(f(x_m1[i + 1]));
@@ -49,7 +52,7 @@ public class Problem2 {
 		for(int i = 0; i < N - 1; i++) {
 			
 			// calculating approximation, with m=2
-			x_m2[i + 1] = x_m2[i] - (2*(f(x_m2[i])/fPrime(x_m2[i])));
+			x_m2[i + 1] = x_m2[i] - (m2*(f(x_m2[i])/fPrime(x_m2[i])));
 			
 			// calculating backwards error
 			backwards_error2[i] = Math.abs(f(x_m1[i]));
