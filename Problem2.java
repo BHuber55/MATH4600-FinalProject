@@ -3,10 +3,6 @@
 
 public class Problem2 {
 	
-	// all thats left to do is verify convergence.
-	// m=1 should be linear convergence.
-	// m=2 should be quadratic. 
-	
 	public static void main(String args[]) {
 
 		// Initializing variables.
@@ -74,25 +70,21 @@ public class Problem2 {
 		System.out.println();
 		
 		// verifying convergence rates
-		double convergence1 = backwards_error1[steps1] / backwards_error1[steps1 - 1];
-		double convergence2 = backwards_error2[steps2] / backwards_error2[steps2 - 1];
+		double convergence1 = backwards_error1[steps1]/backwards_error1[steps1 - 1];
+		double convergence2 = backwards_error2[steps2]/Math.pow((backwards_error2[steps2 - 1]), 2);
 		
-		// this is just wrong. I am getting linear for both.
-		
-		System.out.println("Convergence 1 = " + convergence1);
-		System.out.println("Convergence 2 = " + convergence2);
-		System.out.println();
-		
+		System.out.print("Convergence with m = 1: ");
 		if(convergence1 < 1.0) {
-			System.out.println("Linear Convergence");
+			System.out.println("Linear: " + convergence1);
 		} else {
-			System.out.println("Quadatic Convergence");
+			System.out.println("Quadatic: " + convergence1);
 		}
 		
-		if(convergence1 < 1.0) {
-			System.out.println("Linear Convergence");
+		System.out.print("Convergence with m = 2: ");
+		if(convergence2 < 1.0) {
+			System.out.println("Linear: " + convergence2);
 		} else {
-			System.out.println("Quadatic Convergence");
+			System.out.println("Quadatic: " + convergence2);
 		}
 	}
 	
